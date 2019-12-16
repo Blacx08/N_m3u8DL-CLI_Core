@@ -31,8 +31,8 @@ namespace N_m3u8DL_CLI_Core
 
 
         /*===============================================================================*/
-        static string nowVer = "1.0.4";
-        static string nowDate = "20191130";
+        static string nowVer = "1.0.5";
+        static string nowDate = "20191216";
         public static void WriteInit()
         {
             Console.Clear();
@@ -88,6 +88,16 @@ namespace N_m3u8DL_CLI_Core
             {
                 ;
             }
+        }
+
+        public static string GetValidFileName(string input, string re = ".")
+        {
+            string title = input;
+            foreach (char invalidChar in Path.GetInvalidFileNameChars())
+            {
+                title = title.Replace(invalidChar.ToString(), re);
+            }
+            return title;
         }
 
         // parseInt(s, radix)

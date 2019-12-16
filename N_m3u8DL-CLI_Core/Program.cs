@@ -173,7 +173,7 @@ namespace N_m3u8DL_CLI_Core
                 }
                 if (arguments.Has("--saveName"))
                 {
-                    fileName = arguments.Get("--saveName").Next;
+                    fileName = Global.GetValidFileName(arguments.Get("--saveName").Next);
                 }
                 if (arguments.Has("--useKeyFile"))
                 {
