@@ -31,8 +31,8 @@ namespace N_m3u8DL_CLI_Core
 
 
         /*===============================================================================*/
-        static string nowVer = "1.0.5";
-        static string nowDate = "20191216";
+        static string nowVer = "1.0.6";
+        static string nowDate = "20191218";
         public static void WriteInit()
         {
             Console.Clear();
@@ -725,6 +725,14 @@ namespace N_m3u8DL_CLI_Core
                         VIDEO_TYPE = "DV";
                     }
                     else if (res.Contains("Video hevc (Main 10) (DOVI"))  //优酷视频杜比视界
+                    {
+                        VIDEO_TYPE = "DV";
+                    }
+                    else if (res.Contains("Video hevc (Main 10) (dvh1"))  //优酷视频杜比视界
+                    {
+                        VIDEO_TYPE = "DV";
+                    }
+                    else if (res.Contains("Video hevc (dvh1"))  //优酷视频杜比视界
                     {
                         VIDEO_TYPE = "DV";
                     }
