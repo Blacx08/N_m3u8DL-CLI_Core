@@ -223,6 +223,8 @@ namespace N_m3u8DL_CLI_Core
             if (Global.HadReadInfo == false)
             {
                 string href = DownDir + "\\Part_" + 0.ToString(partsPadZero) + "\\" + firstSeg["index"].Value<int>().ToString(segsPadZero) + ".ts";
+                if (File.Exists(DownDir + "\\!MAP.ts"))
+                    href = DownDir + "\\!MAP.ts";
                 Global.GzipHandler(href);
                 bool flag = false;
                 foreach (string ss in (string[])Global.GetVideoInfo(href).ToArray(typeof(string)))
@@ -571,7 +573,7 @@ namespace N_m3u8DL_CLI_Core
                                 FFmpeg.Merge(Global.GetFiles(DownDir, ".ts"), MuxFormat, MuxFastStart);
                             else
                             {
-                                JObject json = JObject.Parse(MuxSetJson);
+                                JObject json = JObject.Parse(File.ReadAllText(MuxSetJson, Encoding.UTF8));
                                 string muxFormat = json["muxFormat"].Value<string>();
                                 bool fastStart = Convert.ToBoolean(json["fastStart"].Value<string>());
                                 string poster = json["poster"].Value<string>();

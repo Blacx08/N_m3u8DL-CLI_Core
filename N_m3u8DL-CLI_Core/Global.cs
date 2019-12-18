@@ -31,7 +31,7 @@ namespace N_m3u8DL_CLI_Core
 
 
         /*===============================================================================*/
-        static string nowVer = "1.0.6";
+        static string nowVer = "1.0.7";
         static string nowDate = "20191218";
         public static void WriteInit()
         {
@@ -43,51 +43,6 @@ namespace N_m3u8DL_CLI_Core
             Console.WriteLine("Speed: waiting");
             Console.WriteLine("Progress: waiting");
             Console.WriteLine();
-        }
-
-        public static string GetProgressBarString(double down, double total)
-        {
-            StringBuilder sb = new StringBuilder();
-            int len = 30;
-            double per = down / total;
-            for (int i = 0; i < len * per; i++)
-            {
-                sb.Append("#");
-            }
-            return "[" + sb.ToString().PadRight(len, ' ') + "] ";
-        }
-
-        public static void CheckUpdate()
-        {
-            try
-            {
-                string redirctUrl = Get302("https://github.com/nilaoda/N_m3u8DL-CLI/releases/latest");
-                string latestVer = redirctUrl.Replace("https://github.com/nilaoda/N_m3u8DL-CLI/releases/tag/", "");
-                if (nowVer != latestVer && !latestVer.StartsWith("https"))
-                {
-                    Console.Title = $"检测到更新，版本：{latestVer}! 正在尝试自动下载新版";
-                    try
-                    {
-                        //尝试下载新版本(去码云)
-                        string url = $"https://gitee.com/nilaoda/N_m3u8DL-CLI/raw/master/N_m3u8DL-CLI_v{latestVer}.exe";
-                        if (File.Exists(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"N_m3u8DL-CLI_v{latestVer}.exe")))
-                            return;
-                        HttpDownloadFile(url, Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"N_m3u8DL-CLI_v{latestVer}.exe"));
-                        if (File.Exists(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"N_m3u8DL-CLI_v{latestVer}.exe")))
-                            Console.Title = $"检测到更新，版本：{latestVer}! 新版下载成功，请您自行替换";
-                        else
-                            Console.Title = $"检测到更新，版本：{latestVer}! 新版下载失败，请您自行下载";
-                    }
-                    catch (Exception)
-                    {
-                        ;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                ;
-            }
         }
 
         public static string GetValidFileName(string input, string re = ".")
