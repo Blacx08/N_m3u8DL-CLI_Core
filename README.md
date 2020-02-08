@@ -10,8 +10,12 @@ N_m3u8DL-CLI 的`.NET Core`跨平台实现.
 # 如何使用
 
 ## 直接运行
-移步 [Release](https://github.com/nilaoda/N_m3u8DL-CLI_Core/releases) 页面。
-
+移步 [Release](https://github.com/nilaoda/N_m3u8DL-CLI_Core/releases) 页面。  
+Tip:  
+MacOS 如报错  
+`在PATH和程序路径下找不到 ffmpeg`  
+`请自行安装ffmpeg.`  
+则需要[下载对应的ffmpeg](https://ffmpeg.zeranoe.com/builds/macos64/static/)
 ## 自己编译
 
 运行
