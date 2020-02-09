@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Text;
@@ -222,9 +222,9 @@ namespace N_m3u8DL_CLI_Core
 
             if (Global.HadReadInfo == false)
             {
-                string href = DownDir + "\\Part_" + 0.ToString(partsPadZero) + "\\" + firstSeg["index"].Value<int>().ToString(segsPadZero) + ".ts";
-                if (File.Exists(DownDir + "\\!MAP.ts"))
-                    href = DownDir + "\\!MAP.ts";
+                string href = Path.Combine(DownDir, "", 0.ToString(partsPadZero),firstSeg["index"].Value<int>().ToString(segsPadZero) + ".ts");
+                if (File.Exists(Path.Combine(DownDir ,"!MAP.ts")))
+                    href = Path.Combine(DownDir, "!MAP.ts");
                 Global.GzipHandler(href);
                 bool flag = false;
                 foreach (string ss in (string[])Global.GetVideoInfo(href).ToArray(typeof(string)))
@@ -346,7 +346,7 @@ namespace N_m3u8DL_CLI_Core
 
             for (int i = 0; i < PartsCount; i++)
             {
-                tsCount += Global.GetFileCount(DownDir + "\\Part_" + i.ToString(partsPadZero), ".ts");
+                tsCount += Global.GetFileCount(Path.Combine(DownDir, "Part_" + i.ToString(partsPadZero)), ".ts");
             }
 
         ll:
@@ -409,8 +409,8 @@ namespace N_m3u8DL_CLI_Core
                                 foreach (string s in Global.GetFiles(DownDir + "/Part_0", ".ts"))
                                 {
                                     //跳过有MAP的情况
-                                    if (!isVTT && !File.Exists(DownDir + "\\Part_0\\!MAP.ts") && !FFmpeg.CheckMPEGTS(s))
-                                    {
+                                    if (!isVTT && !File.Exists(Path.Combine(DownDir ,"Part_0","!MAP.ts")) && !FFmpeg.CheckMPEGTS(s))
+                                        {
                                         //转换
                                         LOGGER.PrintLine("将文件转换到 MPEG-TS 封装：" + Path.GetFileName(s));
                                         LOGGER.WriteLine("Re-Mux file to MPEG-TS：" + Path.GetFileName(s));
@@ -558,8 +558,8 @@ namespace N_m3u8DL_CLI_Core
                             foreach (string s in Global.GetFiles(DownDir, ".ts"))
                             {
                                 //跳过有MAP的情况
-                                if (!isVTT && !File.Exists(DownDir + "\\!MAP.ts") && !FFmpeg.CheckMPEGTS(s))
-                                {
+                                if (!isVTT && !File.Exists(Path.Combine(DownDir , "!MAP.ts")) && !FFmpeg.CheckMPEGTS(s))
+                                    {
                                     //转换
                                     LOGGER.PrintLine("将文件转换到 MPEG-TS 封装：" + Path.GetFileName(s));
                                     LOGGER.WriteLine("Re-Mux file to MPEG-TS：" + Path.GetFileName(s));

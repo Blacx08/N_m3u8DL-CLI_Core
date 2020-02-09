@@ -1,4 +1,4 @@
-﻿using N_m3u8DL_CLI_Core.CommandLineParser;
+using N_m3u8DL_CLI_Core.CommandLineParser;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
@@ -31,6 +31,8 @@ namespace N_m3u8DL_CLI_Core
             {
                 //判断操作系统
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    isWindows = false;
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                     isWindows = false;
 
                 string CURRENT_PATH = Directory.GetCurrentDirectory();
