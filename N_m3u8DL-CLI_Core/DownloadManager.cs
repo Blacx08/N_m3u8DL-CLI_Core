@@ -222,7 +222,7 @@ namespace N_m3u8DL_CLI_Core
 
             if (Global.HadReadInfo == false)
             {
-                string href = Path.Combine(DownDir, "", 0.ToString(partsPadZero),firstSeg["index"].Value<int>().ToString(segsPadZero) + ".ts");
+                string href = Path.Combine(DownDir, $"Part_{ 0.ToString(partsPadZero) }",firstSeg["index"].Value<int>().ToString(segsPadZero) + ".ts");
                 if (File.Exists(Path.Combine(DownDir ,"!MAP.ts")))
                     href = Path.Combine(DownDir, "!MAP.ts");
                 Global.GzipHandler(href);
