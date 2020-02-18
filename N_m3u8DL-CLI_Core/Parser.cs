@@ -750,7 +750,7 @@ namespace N_m3u8DL_CLI_Core
         {
             if (!isQiQiuYun && Global.Get302(m3u8url, headers) != m3u8url)
                 m3u8url = Global.Get302(m3u8url, headers);
-            string url = m3u8url;
+            string url = Global.Get302(m3u8url);
             if (url.Contains("?"))
                 url = url.Remove(url.LastIndexOf('?'));
             url = url.Substring(0, url.LastIndexOf('/') + 1);
